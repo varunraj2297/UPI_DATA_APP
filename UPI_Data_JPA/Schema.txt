@@ -1,0 +1,29 @@
+ create table upi_data (
+       vid bigint not null auto_increment,
+        addr varchar(255),
+        code varchar(255),
+        created_date datetime,
+        key_value varchar(255),
+        ki varchar(255),
+        logo varchar(255),
+        name varchar(255),
+        update_date datetime,
+        url varchar(255),
+        primary key (vid)
+    ) engine=MyISAM
+    
+    
+     DELIMITER $$
+CREATE PROCEDURE prepare_data()
+BEGIN
+  DECLARE i INT DEFAULT 1;
+
+  WHILE i < 10000 DO
+    INSERT INTO UPI_DATA (NAME,ADDR,LOGO,URL,CODE,KI,KEY_VALUE,CREATED_DATE,UPDATE_DATE) VALUES ('Olive','Hyderabad','Olive 24x7','www.olive.com','IFEX723I','UID3457','IFSS@3312',NOW(),NOW());
+    SET i = i + 1;
+  END WHILE;
+END$$
+DELIMITER ;
+
+
+CALL prepare_data();
